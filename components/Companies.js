@@ -24,7 +24,7 @@ export default function Companies({ route, navigation }) {
     // Initialize Firebase
     const app = initializeApp(firebaseConfig);
     const database = getDatabase(app);
-
+/*
     useEffect(() => {
         const CompanyRef = ref(database, 'users/'+ route.params.user +'/companies/');
         onValue(CompanyRef, (snapshot) => {const data = snapshot.val();
@@ -37,7 +37,7 @@ export default function Companies({ route, navigation }) {
             }
         })
     }, []);
-
+*/
     if (listCompanies.length > 0) {
         console.log(listCompanies.length)
         return (

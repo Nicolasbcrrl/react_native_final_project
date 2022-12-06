@@ -1,11 +1,10 @@
 import { resolveDiscoveryAsync } from 'expo-auth-session';
 import * as React from 'react';
 import { useState, useEffect} from 'react';
-import { Button,View,Text,StyleSheet, FlatList} from 'react-native';
-import { Icon, ListItem } from 'react-native-elements';
+import { View,Text,StyleSheet,ScrollView, TouchableOpacity} from 'react-native';
+import { Icon,ListItem } from 'react-native-elements';
 import { initializeApp } from "firebase/app";
 import { getDatabase, push, ref, onValue, remove } from'firebase/database';
-import AddIncorporation from './AddIncorporation';
 
 export default function Incorporations({ route, navigation }) {
     const [incorporations, setIncorporations] = useState([]);
@@ -37,40 +36,35 @@ export default function Incorporations({ route, navigation }) {
     if (incorporations.length > 0) {
         console.log(incorporations.length)
         return (
-            <View style={styles.container}>
-                <Text>Incorporations de {route.params.user}</Text>
-                <View style={{ width: '100%', marginTop: 20 }}>
-                    <FlatList style={{ width: '100%' }}
-                        data={incorporations}
-                        renderItem={({ item }) => (
+            <ScrollView style={styles.inputsContainer}>
+               {
+                    incorporations.map((comp, key)=>(
                             <ListItem
-                                style={styles.ListItem}
-                                key={item.key}
-                                bottomDivider={true}
-                                topDivider={true}
-                                onPress={() => navigation.navigate('Calls', { user: route.params.user, Inco: item.key })}
-                                >
-                                <ListItem.Content style={{ width: '100%' }}>
-                                    <ListItem.Title>{item.name}</ListItem.Title>
+                                key={key}
+                                bottomDivider
+                                onPress={() => navigation.navigate('Calls', { user: route.params.user, Inco: comp.name })}
+                            >
+                                <ListItem.Content styles={{backgroundColor: "black"}}>
+                                    <ListItem.Title style={{ color: 'black', fontWeight: 'bold'}}>
+                                        {comp.name}
+                                    </ListItem.Title>
                                 </ListItem.Content>
-                                <ListItem.Chevron />
+                                <ListItem.Chevron color="black" />
                             </ListItem>
-                        )}
-                    />
-                </View>
-                <View>
+                        )
+                    )
+                }
+                <TouchableOpacity  
+                    style={{marginTop: 20}}
+                    onPress={()=>navigation.navigate('Add Incorporation')}  
+                >
                     <Icon
                         type="ionicon"
                         size={50}
                         name="add-circle-outline"     
-                        onPress={() =>  
-                                {
-                                    navigation.navigate('Add Incorporation', {user: route.params.user});
-                                }
-                            }     
-                        />
-                </View>
-            </View>
+                    />
+                </TouchableOpacity>
+            </ScrollView>
         );
     }
     else {
@@ -98,11 +92,27 @@ export default function Incorporations({ route, navigation }) {
 const styles = StyleSheet.create({
     container: {
       flex: 1,
-      backgroundColor: 'red',
+      backgroundColor: 'white',
       alignItems: 'center',
       justifyContent: 'center',
+      marginBottom: 0,
+      marginTop: -400,
     },
     ListItem: {
         width: '100%',
+    },
+    inputsContainer: {
+        flex: 1, 
+        marginBottom: 20,
+        backgroundColor: "white"
+      },
+    inputContainer: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        borderBottomWidth: 1,
+        marginTop: 30, 
+        marginBottom: 10,
+        borderBottomColor: "lightgray"
     }
 });

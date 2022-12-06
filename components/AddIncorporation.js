@@ -1,10 +1,10 @@
 import { resolveDiscoveryAsync } from 'expo-auth-session';
 import * as React from 'react';
-import { useState, useRef} from 'react';
-import { Button,View,Text,StyleSheet, FlatList, TextInput,TouchableOpacity,TouchableWithoutFeedback,ScrollView  } from 'react-native';
+import { useState} from 'react';
+import { View,Text,StyleSheet, TouchableHighlight, TextInput,TouchableOpacity,TouchableWithoutFeedback,ScrollView  } from 'react-native';
 import { Icon, Input } from 'react-native-elements';
 import { initializeApp } from "firebase/app";
-import { getDatabase, push, ref, onValue, remove, update } from'firebase/database';
+import { getDatabase, ref, update } from'firebase/database';
 
 export default function AddIncorporation({ route, navigation }) {
     //firebase configuration
@@ -126,14 +126,16 @@ export default function AddIncorporation({ route, navigation }) {
               )
             )
           }
-          <View style={{marginTop:20}}>
+          <TouchableOpacity  
+                    style={{marginTop: 20}}
+                    onPress={addHandler}       
+          >
             <Icon
               type="ionicon"
               size={50}
-              name="add-circle-outline"     
-              onPress={addHandler}     
+              name="add-circle-outline"         
             />
-          </View>
+          </TouchableOpacity>
         </ScrollView>
 
         <TouchableWithoutFeedback onPress={()=> saveIncorporation()}>
