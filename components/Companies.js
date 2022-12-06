@@ -5,7 +5,7 @@ import { Button,View,Text,StyleSheet, FlatList} from 'react-native';
 import { Icon, ListItem } from 'react-native-elements';
 import { initializeApp } from "firebase/app";
 import { getDatabase, push, ref, onValue, remove } from'firebase/database';
-import AddCompany from './AddCompany';
+
 
 export default function Companies({ route, navigation }) {
     const [company, setCompany] = useState({key : 1, name : "Company 1"});
@@ -61,18 +61,6 @@ export default function Companies({ route, navigation }) {
                             </ListItem>
                         )}
                     />
-                </View>
-                <View>
-                    <Icon
-                            type="ionicon"
-                            size={50}
-                            name="add-circle-outline"     
-                            onPress={() =>  
-                                {
-                                    navigation.navigate('Add Company', {user: route.params.user});
-                                }
-                            }     
-                        />
                 </View>
             </View>
         );

@@ -8,8 +8,7 @@ import { getDatabase, push, ref, onValue, remove } from'firebase/database';
 import AddIncorporation from './AddIncorporation';
 
 export default function Incorporations({ route, navigation }) {
-    const [inco, setInco] = useState({key : 1, name : "Rav-45"});
-    const [incorporations, setIncorporations] = useState([inco]);
+    const [incorporations, setIncorporations] = useState([]);
 
     const firebaseConfig = {
         apiKey: "AIzaSyDDLq2Tr6jJEJUgnnQLJtYG6FxL3QjRQ6Q",
@@ -29,11 +28,9 @@ export default function Incorporations({ route, navigation }) {
         const incorporationRef = ref(database, 'users/'+ route.params.user +'/incorporations/');
         onValue(incorporationRef, (snapshot) => {const data = snapshot.val();
             if(data !== null){
-                const incorporationsFind = object.keys(data).map((key)=>({
-                    key: key,
-                    name: data[key].name
-                }));
-                setIncorporations(incorporationsFind);
+                let incos = Object.values(data);
+                console.log(incos);
+                setIncorporations(incos);
             }
         })
     }, []);
@@ -63,10 +60,10 @@ export default function Incorporations({ route, navigation }) {
                 </View>
                 <View>
                     <Icon
-                            type="ionicon"
-                            size={50}
-                            name="add-circle-outline"     
-                            onPress={() =>  
+                        type="ionicon"
+                        size={50}
+                        name="add-circle-outline"     
+                        onPress={() =>  
                                 {
                                     navigation.navigate('Add Incorporation', {user: route.params.user});
                                 }

@@ -1,8 +1,8 @@
 import { resolveDiscoveryAsync } from 'expo-auth-session';
 import * as React from 'react';
 import { useState, useRef} from 'react';
-import { Button,View,Text,StyleSheet, FlatList, TextInput,TouchableOpacity,ScrollView  } from 'react-native';
-import { Icon, ListItem } from 'react-native-elements';
+import { Button,View,Text,StyleSheet, FlatList, TextInput,TouchableOpacity,TouchableWithoutFeedback,ScrollView  } from 'react-native';
+import { Icon, Input } from 'react-native-elements';
 import { initializeApp } from "firebase/app";
 import { getDatabase, push, ref, onValue, remove, update } from'firebase/database';
 
@@ -36,11 +36,9 @@ export default function AddIncorporation({ route, navigation }) {
     );
 
     const saveIncorporation = () => {
-        if (incorporation !== "" && incorporation !== null) {
+        if (incorporation.name !== "" && incorporation.name !== null) {
             const inco = {name: incorporation.name, staff: incorporation.staff};
             let staff = countStaff();
-            console.log(incorporation.name);
-            console.log(staff);
             update(ref(database, 'users/'+ route.params.user +'/incorporations/'+ incorporation.name), {
                 name: inco.name,
                 staff: staff
@@ -74,19 +72,19 @@ export default function AddIncorporation({ route, navigation }) {
     const addHandler = ()=>{
         const _inputs = incorporation.company;
         _inputs.push({key: '', name: '', staff: 0});
-        setIncorporation({company: _inputs});
+        setIncorporation({...incorporation, company: _inputs});
     }
     
     const deleteHandler = (key)=>{
       const _inputs = incorporation.company.filter((company,index) => index != key);
-      setIncorporation({company: _inputs});
+      setIncorporation({...incorporation, company: _inputs});
     }
   
     const inputHandler = (text, key)=>{
       const _inputs = incorporation.company;
       _inputs[key].name = text;
       _inputs[key].key   = key;
-      setIncorporation({company: _inputs});
+      setIncorporation({...incorporation, company: _inputs});
   
     }
 
@@ -94,7 +92,7 @@ export default function AddIncorporation({ route, navigation }) {
         const _inputs = incorporation.company;
         _inputs[key].staff = parseInt(text);
         _inputs[key].key   = key;
-        setIncorporation({company: _inputs});
+        setIncorporation({...incorporation, company: _inputs});
     };
 
     const countStaff = () => {
@@ -108,22 +106,41 @@ export default function AddIncorporation({ route, navigation }) {
   
     return (
       <View style={styles.container}>
-        <View style={styles.header}>
-            <TextInput  placeholder="Incorporation name" value= {incorporation.name} onChangeText={(text) => {setIncorporation({...incorporation, name: text})}}/>
+        <View>
+            <Input  placeholder="Incorporation name" value= {incorporation.name} onChangeText={(text) => {setIncorporation({...incorporation, name: text})}}/>
         </View>
         <ScrollView style={styles.inputsContainer}>
-        {incorporation.company.map((comp, key)=>(
-          <View style={styles.inputContainer}>
-            <TextInput placeholder={"Enter Name"} value={comp.name}  onChangeText={(text)=>inputHandler(text,key)}/>
-            <TextInput type={Number} placeholder={"Enter Staff"} value={comp.staff}  onChangeText={(text)=>inputStaffHandler(text,key)}/>
-            <TouchableOpacity onPress = {()=> deleteHandler(key)}>
-              <Text style={{color: "red", fontSize: 13}}>Delete</Text>
-            </TouchableOpacity> 
+          {
+            incorporation.company.map((comp, key)=>(
+              <View style={styles.inputContainer}>
+                <TextInput placeholder={"Enter Name"} value={comp.name}  onChangeText={(text)=>inputHandler(text,key)}/>
+                <TextInput type={Number} placeholder={"Enter Staff"} value={comp.staff}  onChangeText={(text)=>inputStaffHandler(text,key)}/>
+                <TouchableOpacity onPress = {()=> deleteHandler(key)}>
+                  <Icon type="ionicon"
+                        color="red"
+                        name="trash-bin-outline" 
+                  ></Icon>
+                </TouchableOpacity>
+                 
+              </View>
+              )
+            )
+          }
+          <View style={{marginTop:20}}>
+            <Icon
+              type="ionicon"
+              size={50}
+              name="add-circle-outline"     
+              onPress={addHandler}     
+            />
           </View>
-        ))}
         </ScrollView>
-        <Button title = "Save" onPress = {()=> saveIncorporation()}/>
-        <Button title="Add" onPress={addHandler} />
+
+        <TouchableWithoutFeedback onPress={()=> saveIncorporation()}>
+          <View style={styles.buttonBackground}>
+          <Text style={{textAlign:"center",fontSize:20, color:'white'}}>Save</Text>
+          </View>
+        </TouchableWithoutFeedback>
       </View>
     );
   }
@@ -142,7 +159,15 @@ export default function AddIncorporation({ route, navigation }) {
       justifyContent: 'space-between',
       alignItems: 'center',
       borderBottomWidth: 1,
+      marginTop: 30, 
+      marginBottom: 10,
       borderBottomColor: "lightgray"
+    },
+    buttonBackground : {
+      paddingHorizontal:20, 
+      paddingVertical:10, 
+      backgroundColor:'green', 
+      borderRadius:10, 
+      elevation:5
     }
-  })
-  
+  });
