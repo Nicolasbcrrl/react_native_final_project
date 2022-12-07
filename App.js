@@ -2,11 +2,13 @@ import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View} from 'react-native';
 import Login from './components/Login';
 import Companies from './components/Companies';
-import AddCompany from './components/AddCompany';
+import AddSection from './components/AddSection';
 import AddIncorporation from './components/AddIncorporation';
 import Incorporation from './components/Incorporation';
 import Calls from './components/Calls';
-import { NavigationContainer } from'@react-navigation/native';
+import CompanyDetail from './components/CompanyDetail';
+import EditCompany from './components/EditCompany';
+import { NavigationContainer, TabRouter } from'@react-navigation/native';
 import { createNativeStackNavigator } from'@react-navigation/native-stack';
 
 const Stack = createNativeStackNavigator();
@@ -16,11 +18,13 @@ export default function App() {
     <NavigationContainer>
       <Stack.Navigator>
         <Stack.Screen name="Login" component={Login} options={{ headerShown: false}} />
-        <Stack.Screen name="Companies" component={Companies} />
-        <Stack.Screen name="Incorporations" component={Incorporation} />
-        <Stack.Screen name="Add Incorporation" component={AddIncorporation} />
-        <Stack.Screen name="Add Company" component={AddCompany} />
-        <Stack.Screen name="Calls" component={Calls} />
+        <Stack.Screen name="Companies" component={Companies} options={({ route }) => ({ title: route.params.name })}/>
+        <Stack.Screen name="Incorporations" component={Incorporation} options={({ route }) => ({ title: route.params.name })} />
+        <Stack.Screen name="Add Incorporation" component={AddIncorporation} options={({ route }) => ({ title: route.params.name })} />
+        <Stack.Screen name="Add Section" component={AddSection} options={({ route }) => ({ title: route.params.name })} />
+        <Stack.Screen name="Calls" component={Calls} options={({ route }) => ({ title: route.params.name })}/>
+        <Stack.Screen name="Company Detail" component={CompanyDetail} options={({ route }) => ({ title: route.params.name })}/>
+        <Stack.Screen name="Edit company" component={EditCompany} options={({ route }) => ({ title: route.params.name })}/>
       </Stack.Navigator>
     </NavigationContainer>
   );

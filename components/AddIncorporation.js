@@ -114,7 +114,7 @@ export default function AddIncorporation({ route, navigation }) {
             incorporation.company.map((comp, key)=>(
               <View style={styles.inputContainer}>
                 <TextInput placeholder={"Enter Name"} value={comp.name}  onChangeText={(text)=>inputHandler(text,key)}/>
-                <TextInput type={Number} placeholder={"Enter Staff"} value={comp.staff}  onChangeText={(text)=>inputStaffHandler(text,key)}/>
+                <TextInput keyboardType='numeric' type={Number} placeholder={"Enter Staff"} value={comp.staff}  onChangeText={(text)=>inputStaffHandler(text,key)}/>
                 <TouchableOpacity onPress = {()=> deleteHandler(key)}>
                   <Icon type="ionicon"
                         color="red"

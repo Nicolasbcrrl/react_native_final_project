@@ -28,7 +28,6 @@ export default function Incorporations({ route, navigation }) {
         onValue(incorporationRef, (snapshot) => {const data = snapshot.val();
             if(data !== null){
                 let incos = Object.values(data);
-                console.log(incos);
                 setIncorporations(incos);
             }
         })
@@ -42,7 +41,7 @@ export default function Incorporations({ route, navigation }) {
                             <ListItem
                                 key={key}
                                 bottomDivider
-                                onPress={() => navigation.navigate('Calls', { user: route.params.user, Inco: comp.name })}
+                                onPress={() => navigation.navigate('Companies', { user: route.params.user, inco: comp.name, name: comp.name + " companies" })}
                             >
                                 <ListItem.Content styles={{backgroundColor: "black"}}>
                                     <ListItem.Title style={{ color: 'black', fontWeight: 'bold'}}>
@@ -56,7 +55,7 @@ export default function Incorporations({ route, navigation }) {
                 }
                 <TouchableOpacity  
                     style={{marginTop: 20}}
-                    onPress={()=>navigation.navigate('Add Incorporation')}  
+                    onPress={()=>navigation.navigate('Add Incorporation', { user: route.params.user })}  
                 >
                     <Icon
                         type="ionicon"
@@ -71,19 +70,16 @@ export default function Incorporations({ route, navigation }) {
         
         return (
             <View style={styles.container}>
-                <Text>Companies de {route.params.user}</Text>
-                <View>
+                <TouchableOpacity  
+                    style={{marginTop: 300,marginLeft: 12, backgroundColor: "white"}}
+                    onPress={()=>navigation.navigate('Add Incorporation', { user: route.params.user})}  
+                >
                     <Icon
-                            type="ionicon"
-                            size={50}
-                            name="add-circle-outline"     
-                            onPress={() =>  
-                                {
-                                    navigation.navigate('Calls', {user: route.params.user});
-                                }
-                            }     
-                        />
-                </View>
+                        type="ionicon"
+                        size={70}
+                        name="add-circle-outline"     
+                    />
+                </TouchableOpacity>
             </View>
         );
     }

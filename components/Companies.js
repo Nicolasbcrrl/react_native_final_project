@@ -1,7 +1,7 @@
 import { resolveDiscoveryAsync } from 'expo-auth-session';
 import * as React from 'react';
 import { useState, useEffect} from 'react';
-import { Button,View,Text,StyleSheet, FlatList} from 'react-native';
+import { Button,View,Text,StyleSheet, ScrollView} from 'react-native';
 import { Icon, ListItem } from 'react-native-elements';
 import { initializeApp } from "firebase/app";
 import { getDatabase, push, ref, onValue, remove } from'firebase/database';
@@ -24,77 +24,65 @@ export default function Companies({ route, navigation }) {
     // Initialize Firebase
     const app = initializeApp(firebaseConfig);
     const database = getDatabase(app);
-/*
+
     useEffect(() => {
-        const CompanyRef = ref(database, 'users/'+ route.params.user +'/companies/');
-        onValue(CompanyRef, (snapshot) => {const data = snapshot.val();
+        const incorporationRef = ref(database, 'users/'+ route.params.user +'/incorporations/'+ route.params.inco + /companies/);
+        onValue(incorporationRef, (snapshot) => {const data = snapshot.val();
             if(data !== null){
-                const company = object.keys(data).map((key)=>({
-                    key: key,
-                    name: data[key].name
-                }));
-                setListCompanies(company);
+                let comp = Object.values(data);
+                console.log(comp);
+                setListCompanies(comp);
             }
         })
     }, []);
-*/
-    if (listCompanies.length > 0) {
-        console.log(listCompanies.length)
-        return (
-            <View style={styles.container}>
-                <Text>Companies {route.params.user}</Text>
-                <View style={{ width: '100%', marginTop: 20 }}>
-                    <FlatList style={{ width: '100%' }}
-                        data={listCompanies}
-                        renderItem={({ item }) => (
-                            <ListItem
-                                style={styles.ListItem}
-                                key={item.key}
-                                bottomDivider={true}
-                                topDivider={true}
-                                onPress={() => navigation.navigate('Calls', { user: route.params.user, company: item.key })}
-                                >
-                                <ListItem.Content style={{ width: '100%' }}>
-                                    <ListItem.Title>{item.name}</ListItem.Title>
-                                </ListItem.Content>
-                                <ListItem.Chevron />
-                            </ListItem>
-                        )}
-                    />
-                </View>
-            </View>
-        );
-    }
-    else {
-        
-        return (
-            <View style={styles.container}>
-                <Text>Companies {route.params.user}</Text>
-                <View>
-                    <Icon
-                            type="ionicon"
-                            size={50}
-                            name="add-circle-outline"     
-                            onPress={() =>  
-                                {
-                                    navigation.navigate('Calls', {user: route.params.user});
-                                }
-                            }     
-                        />
-                </View>
-            </View>
-        );
-    }
+
+    return (
+        <ScrollView style={styles.inputsContainer}>
+            {
+                listCompanies.map((comp, key)=>(
+                <ListItem
+                    key={key}
+                    bottomDivider
+                    onPress={() => navigation.navigate('Company Detail', { user: route.params.user, company: comp.name, staff : comp.staff, name: comp.name })}
+                >
+                    <ListItem.Content styles={{backgroundColor: "black"}}>
+                        <ListItem.Title style={{ color: 'black', fontWeight: 'bold'}}>
+                            {comp.name}
+                        </ListItem.Title>
+                    </ListItem.Content>
+                    <ListItem.Chevron color="black" />
+                </ListItem>
+                    )
+                )
+            }
+        </ScrollView>
+    );
 }
 
 const styles = StyleSheet.create({
     container: {
       flex: 1,
-      backgroundColor: 'red',
+      backgroundColor: 'white',
       alignItems: 'center',
       justifyContent: 'center',
+      marginBottom: 0,
+      marginTop: -400,
     },
     ListItem: {
         width: '100%',
+    },
+    inputsContainer: {
+        flex: 1, 
+        marginBottom: 20,
+        backgroundColor: "white"
+      },
+    inputContainer: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        borderBottomWidth: 1,
+        marginTop: 30, 
+        marginBottom: 10,
+        borderBottomColor: "lightgray"
     }
 });
