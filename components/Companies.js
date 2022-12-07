@@ -43,7 +43,7 @@ export default function Companies({ route, navigation }) {
                 <ListItem
                     key={key}
                     bottomDivider
-                    onPress={() => navigation.navigate('Company Detail', { user: route.params.user, company: comp.name, staff : comp.staff, name: comp.name })}
+                    onPress={() => navigation.navigate('Company Detail', { user: route.params.user, inco: route.params.inco ,company: comp.name, staff : comp.staff, name: comp.name })}
                 >
                     <ListItem.Content styles={{backgroundColor: "black"}}>
                         <ListItem.Title style={{ color: 'black', fontWeight: 'bold'}}>

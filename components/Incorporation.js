@@ -55,7 +55,7 @@ export default function Incorporations({ route, navigation }) {
                 }
                 <TouchableOpacity  
                     style={{marginTop: 20}}
-                    onPress={()=>navigation.navigate('Add Incorporation', { user: route.params.user })}  
+                    onPress={()=>navigation.navigate('Add an Incorporation', { user: route.params.user })}  
                 >
                     <Icon
                         type="ionicon"

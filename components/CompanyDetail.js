@@ -6,10 +6,10 @@ import { Icon} from 'react-native-elements';
 export default function CompanyDetail({ route, navigation }) {
     return (
         <View style={styles.container}>
-            <Text>Calls {route.params.user + " " + route.params.company + " " + route.params.staff}</Text>
+            <Text>Calls {route.params.user + " " + route.params.inco + " " + route.params.company + " " + route.params.staff}</Text>
             <View>
-                <Button title="Add Section" onPress={() => navigation.navigate('Add Section', {user: route.params.user, company: route.params.company, staff: route.params.staff})}/>
-                <Button title="Edit company" onPress={() => navigation.navigate('Edit company', {user: route.params.user, company: route.params.company, staff: route.params.staff})}/>
+                <Button title="Add Section" onPress={() => navigation.navigate('Add Section', {user: route.params.user, inco: route.params.inco ,company: route.params.company, staff: route.params.staff})}/>
+                <Button title="Edit a company" onPress={() => navigation.navigate('Edit company', {user: route.params.user, company: route.params.company, staff: route.params.staff})}/>
                 <Button title="Calls" onPress={() => navigation.navigate('Calls', {user: route.params.user, company: route.params.company, staff: route.params.staff})}/>
                 <Icon
                         type="ionicon"

@@ -1,9 +1,13 @@
 import { resolveDiscoveryAsync } from 'expo-auth-session';
 import * as React from 'react';
-import { Button,View,Text,StyleSheet} from 'react-native';
-import { Icon} from 'react-native-elements';
+import { useState} from 'react';
+import { View,Text,StyleSheet, TouchableHighlight, TextInput,TouchableOpacity,TouchableWithoutFeedback,ScrollView  } from 'react-native';
+import { Icon, Input } from 'react-native-elements';
+import { initializeApp } from "firebase/app";
+import { getDatabase, ref, update } from'firebase/database';
 
 export default function EditCompany({ route, navigation }) {
+    
     return (
         <View style={styles.container}>
             <Text>Calls {route.params.user}</Text>

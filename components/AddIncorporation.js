@@ -66,9 +66,6 @@ export default function AddIncorporation({ route, navigation }) {
         };
     };
 
-
-    const [inputs, setInputs] = useState([{key: '', value: '', staff: 0}]);
-
     const addHandler = ()=>{
         const _inputs = incorporation.company;
         _inputs.push({key: '', name: '', staff: 0});

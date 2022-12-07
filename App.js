@@ -20,11 +20,11 @@ export default function App() {
         <Stack.Screen name="Login" component={Login} options={{ headerShown: false}} />
         <Stack.Screen name="Companies" component={Companies} options={({ route }) => ({ title: route.params.name })}/>
         <Stack.Screen name="Incorporations" component={Incorporation} options={({ route }) => ({ title: route.params.name })} />
-        <Stack.Screen name="Add Incorporation" component={AddIncorporation} options={({ route }) => ({ title: route.params.name })} />
+        <Stack.Screen name="Add an Incorporation" component={AddIncorporation} options={({ route }) => ({ title: route.params.name })} />
         <Stack.Screen name="Add Section" component={AddSection} options={({ route }) => ({ title: route.params.name })} />
         <Stack.Screen name="Calls" component={Calls} options={({ route }) => ({ title: route.params.name })}/>
         <Stack.Screen name="Company Detail" component={CompanyDetail} options={({ route }) => ({ title: route.params.name })}/>
-        <Stack.Screen name="Edit company" component={EditCompany} options={({ route }) => ({ title: route.params.name })}/>
+        <Stack.Screen name="Edit a company" component={EditCompany} options={({ route }) => ({ title: route.params.name })}/>
       </Stack.Navigator>
     </NavigationContainer>
   );
