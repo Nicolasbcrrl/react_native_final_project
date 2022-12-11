@@ -97,8 +97,8 @@ export default function AddSection({ route, navigation }) {
 
     return (
         <View style={styles.container}>
-          <View>
-              <Text>
+          <View style={styles.staffNumber}>
+              <Text style={{fontSize:25}}>
                 {route.params.staff}
               </Text>
           </View>
@@ -132,9 +132,9 @@ export default function AddSection({ route, navigation }) {
           </ScrollView>
           <TouchableWithoutFeedback onPress={()=> saveSections()}>
             <View style={styles.buttonBackground}>
-              <Text style={{textAlign:"center",fontSize:20, color:'white'}}>Save</Text>
+              <Text style={styles.saveStyle}>Save</Text>
             </View>
-        </TouchableWithoutFeedback>
+          </TouchableWithoutFeedback>
         </View>
       );
 }
@@ -163,5 +163,14 @@ const styles = StyleSheet.create({
       backgroundColor:'green', 
       borderRadius:10, 
       elevation:5
+    },
+    saveStyle : {
+      textAlign:"center",
+      fontSize:20, 
+      color:'white'
+    },
+    staffNumber: { 
+      marginLeft: 167
+
     }
   });

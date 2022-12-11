@@ -1,0 +1,25 @@
+    return (
+        <View style={styles.container}>
+            <View styles={{backgroundColor:'yellow'}}>
+                <TouchableWithoutFeedback onPress={()=> navigation.navigate('Add Section', {user: route.params.user, inco: route.params.inco ,company: route.params.company, staff: route.params.staff})}>
+                    <View style={styles.buttonBackground}>
+                    <Text style={{textAlign:"center",fontSize:20, color:'white'}}>ADD SECTIONCS</Text>
+                    </View>
+                </TouchableWithoutFeedback>
+            </View>
+            <View styles={{backgroundColor: 'green'}}>
+                <TouchableWithoutFeedback onPress={() => navigation.navigate('Calls', {user: route.params.user, company: route.params.company, staff: route.params.staff})}>
+                    <View style={styles.buttonBackground}>
+                    <Text style={{textAlign:"center",fontSize:20, color:'white'}}>CALLS</Text>
+                    </View>
+                </TouchableWithoutFeedback> 
+            </View>   
+            <View styles={{backgroundColor:'blue'}}>
+                <TouchableWithoutFeedback onPress={() => navigation.navigate('Edit', {user: route.params.user, company: route.params.company, staff: route.params.staff})}>
+                    <View style={styles.buttonBackground}>
+                    <Text style={{textAlign:"center",fontSize:20, color:'white'}}>Edit</Text>
+                    </View>
+                </TouchableWithoutFeedback>
+            </View>
+        </View>
+    );

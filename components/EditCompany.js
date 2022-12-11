@@ -7,7 +7,13 @@ import { initializeApp } from "firebase/app";
 import { getDatabase, ref, update } from'firebase/database';
 
 export default function EditCompany({ route, navigation }) {
-    
+    const test = () => {
+        return (
+            <View>
+                <Text>Test</Text>
+            </View>
+        )
+    };
     return (
         <View style={styles.container}>
             <Text>Calls {route.params.user}</Text>
@@ -15,7 +21,9 @@ export default function EditCompany({ route, navigation }) {
                 <Icon
                         type="ionicon"
                         size={50}
-                        name="add-circle-outline"          
+                        name="add-circle-outline" 
+                        onPress={() => test()}
+         
                     />
             </View>
         </View>
