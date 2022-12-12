@@ -1,8 +1,7 @@
-import { resolveDiscoveryAsync } from 'expo-auth-session';
 import * as React from 'react';
 import { useState} from 'react';
-import { View,Text,StyleSheet, TouchableHighlight, TextInput,TouchableOpacity,TouchableWithoutFeedback,ScrollView  } from 'react-native';
-import { Icon, Input } from 'react-native-elements';
+import { View,Text,StyleSheet, TextInput,TouchableOpacity,TouchableWithoutFeedback,ScrollView } from 'react-native';
+import { Icon} from 'react-native-elements';
 import { initializeApp } from "firebase/app";
 import { getDatabase, ref, update } from'firebase/database';
 
@@ -38,7 +37,8 @@ export default function AddSection({ route, navigation }) {
             const sct = {name: sections[i].name, staff: sections[i].staff};
             if(sct.name !== "" && sct.name !== null){
                 update(
-                    ref(database, 'users/'+ route.params.user +'/incorporations/'+ route.params.inco +'/companies/'+ route.params.company +'/sections/'+ sct.name),
+                    ref(database, 
+                      'users/'+ route.params.user +'/incorporations/'+ route.params.inco +'/companies/'+ route.params.company +'/sections/'+ sct.name),
                     {
                         name: sct.name,
                         staff: sct.staff

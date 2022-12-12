@@ -8,6 +8,8 @@ import Incorporation from './components/Incorporation';
 import Calls from './components/Calls';
 import CompanyDetail from './components/CompanyDetail';
 import EditCompany from './components/EditCompany';
+import MenuCalls from './components/MenuCalls';
+import History from './components/History';
 import { NavigationContainer, TabRouter } from'@react-navigation/native';
 import { createNativeStackNavigator } from'@react-navigation/native-stack';
 
@@ -25,6 +27,8 @@ export default function App() {
         <Stack.Screen name="Calls" component={Calls} options={({ route }) => ({ title: route.params.name })}/>
         <Stack.Screen name="Company Detail" component={CompanyDetail} options={({ route }) => ({ title: route.params.name })}/>
         <Stack.Screen name="Edit" component={EditCompany} options={({ route }) => ({ title: route.params.name })}/>
+        <Stack.Screen name="Call Menu" component={MenuCalls} options={({ route }) => ({ title: route.params.name })}/>
+        <Stack.Screen name="History" component={History} options={({ route }) => ({ title: route.params.name })}/>
       </Stack.Navigator>
     </NavigationContainer>
   );

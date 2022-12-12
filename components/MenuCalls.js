@@ -3,18 +3,18 @@ import {View,StyleSheet} from 'react-native';
 import {Button} from 'react-native-elements';
 
 
-export default function CompanyDetail({ route, navigation }) {
+export default function MenuCalls({ route, navigation }) {
     return (
         <View style={styles.container}>
        
             <View style={{marginTop: -80, marginBottom:50}}>
                 <Button 
                     buttonStyle={styles.buttonStyle}
-                    title=" Add Sections "
+                    title=" History "
                     titleStyle={styles.titleStyle}
                     onPress={() => 
                         navigation.navigate(
-                            'Add Section', {
+                            'History', {
                                 user: route.params.user, 
                                 inco: route.params.inco,
                                 company: route.params.company, 
@@ -31,7 +31,7 @@ export default function CompanyDetail({ route, navigation }) {
                     titleStyle={styles.titleStyle}
                     onPress={() => 
                         navigation.navigate(
-                            'Call Menu', {
+                            'Calls', {
                                 user: route.params.user, 
                                 company: route.params.company, 
                                 staff: route.params.staff,
@@ -41,24 +41,6 @@ export default function CompanyDetail({ route, navigation }) {
                     }
                 />
             </View>
-            <View>
-                <Button 
-                    buttonStyle={styles.buttonStyle}
-                    title=" Edit "
-                    titleStyle={styles.titleStyle}
-                    onPress={() => 
-                        navigation.navigate(
-                            'Edit', {
-                                user: route.params.user, 
-                                incoStaff: route.params.incoStaff,
-                                inco: route.params.inco, 
-                                company: route.params.company, 
-                                staff: route.params.staff,
-                            }
-                        )
-                    }
-                />
-            </View>     
         </View>
     );
 }

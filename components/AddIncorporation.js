@@ -1,7 +1,5 @@
-import { resolveDiscoveryAsync } from 'expo-auth-session';
-import * as React from 'react';
 import { useState} from 'react';
-import { View,Text,StyleSheet, TouchableHighlight, TextInput,TouchableOpacity,TouchableWithoutFeedback,ScrollView  } from 'react-native';
+import { View,Text,StyleSheet,TextInput,TouchableOpacity,TouchableWithoutFeedback,ScrollView } from 'react-native';
 import { Icon, Input } from 'react-native-elements';
 import { initializeApp } from "firebase/app";
 import { getDatabase, ref, update } from'firebase/database';

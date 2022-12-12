@@ -1,10 +1,9 @@
-import { resolveDiscoveryAsync } from 'expo-auth-session';
 import * as React from 'react';
 import { useState, useEffect} from 'react';
-import { Button,View,Text,StyleSheet, ScrollView} from 'react-native';
-import { Icon, ListItem } from 'react-native-elements';
+import { StyleSheet, ScrollView} from 'react-native';
+import { ListItem } from 'react-native-elements';
 import { initializeApp } from "firebase/app";
-import { getDatabase, push, ref, onValue, remove } from'firebase/database';
+import { getDatabase,ref, onValue} from'firebase/database';
 
 
 export default function Companies({ route, navigation }) {
@@ -41,7 +40,17 @@ export default function Companies({ route, navigation }) {
                 <ListItem
                     key={key}
                     bottomDivider
-                    onPress={() => navigation.navigate('Company Detail', { user: route.params.user, incoStaff: route.params.incoStaff ,inco: route.params.inco ,company: comp.name, staff : comp.staff, name: comp.name })}
+                    onPress={() => navigation.navigate('Company Detail', 
+                            { 
+                                user: route.params.user, 
+                                incoStaff: route.params.incoStaff,
+                                inco: route.params.inco,
+                                company: comp.name, 
+                                staff : comp.staff, 
+                                name: comp.name 
+                            }
+                        )
+                    }
                 >
                     <ListItem.Content styles={{backgroundColor: "black"}}>
                         <ListItem.Title style={{ color: 'black', fontWeight: 'bold'}}>

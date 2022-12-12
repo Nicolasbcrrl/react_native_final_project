@@ -1,11 +1,10 @@
-import { resolveDiscoveryAsync } from 'expo-auth-session';
 import * as React from 'react';
 import { useState, useEffect} from 'react';
 import { View,StyleSheet, Alert, TouchableWithoutFeedback,Text } from 'react-native';
 import { Input} from 'react-native-elements';
 import { Button, Dialog, Portal, Provider, RadioButton} from 'react-native-paper';
 import { initializeApp } from "firebase/app";
-import { getDatabase, push, ref, onValue, remove, update } from'firebase/database';
+import { getDatabase, ref, onValue, update } from'firebase/database';
 
 
 export default function EditCompany({ route, navigation }) {
@@ -67,7 +66,7 @@ export default function EditCompany({ route, navigation }) {
         setSelect(false);
     }
     else{
-        alert("Please enter a new staff number");
+          Alert.alert('Error','Please enter a new "staff number"');
         }
   };
 
@@ -127,7 +126,7 @@ export default function EditCompany({ route, navigation }) {
   return (
     <Provider>
       <View style={{marginTop: 20}}>
-        <Button onPress={showDialog}>Choose Section</Button>
+        <Button onPress={showDialog} >Choose Section</Button>
         <Portal>
           <Dialog visible={visible} onDismiss={hideDialog}>
             <Dialog.Title>Choose an option</Dialog.Title>
@@ -146,22 +145,23 @@ export default function EditCompany({ route, navigation }) {
         </Portal>
       </View>
       <View>
-        {//sectionSet.name != null  &&
+        {
           select != false &&
           <View>
-            <View style={{marginTop: 50, marginBottom: 20}}>
-                <Input value={sectionSet.name} 
-                editable={false}
+            <View style={{marginTop: 50, marginBottom: 20, fontSize:10, padding: 10}}>
+                <Input 
+                  value={sectionSet.name} 
+                  editable={false}
                 />
             </View>
-            <View style={{marginBottom: 20 }}>
+            <View style={{marginBottom: 20, fontSize: 2, padding: 10 }}>
               <Input  
                 editable={false}
                 keyboardType='numeric' 
                 value={'Current staff : '+JSON.stringify(sectionSet.currStaff)} 
               />
             </View>
-            <View style={{marginBottom: 420}}>
+            <View style={{marginBottom: 340,  fontSize:10, padding: 10}}>
               <Input 
                 placeholder='New Staff'
                 keyboardType='numeric'  
@@ -189,7 +189,9 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   buttonBackground : {
-    paddingHorizontal:20, 
+    marginLeft: 20,
+    marginRight: 20,
+    paddingHorizontal:10, 
     paddingVertical:10, 
     backgroundColor:'green', 
     borderRadius:10, 

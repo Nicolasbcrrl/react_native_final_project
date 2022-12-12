@@ -5,8 +5,8 @@ import { Icon,ListItem } from 'react-native-elements';
 import { initializeApp } from "firebase/app";
 import { getDatabase, ref, onValue} from'firebase/database';
 
-export default function Incorporations({ route, navigation }) {
-    const [incorporations, setIncorporations] = useState([]);
+export default function History({ route, navigation }) {
+    const [calls, setcalls] = useState([]);
 
     const firebaseConfig = {
         apiKey: "AIzaSyDDLq2Tr6jJEJUgnnQLJtYG6FxL3QjRQ6Q",
@@ -23,20 +23,21 @@ export default function Incorporations({ route, navigation }) {
     const database = getDatabase(app);
 
     useEffect(() => {
-        const incorporationRef = ref(database, 'users/'+ route.params.user +'/incorporations/');
-        onValue(incorporationRef, (snapshot) => {const data = snapshot.val();
+        const callRef = ref(database, 'users/'+ route.params.user +'/incorporations/'+ route.params.inco + '/companies/' + route.params.company + '/calls/');
+        onValue(callRef, (snapshot) => {const data = snapshot.val();
             if(data !== null){
-                let incos = Object.values(data);
-                console.log(incos);
-                setIncorporations(incos);
+                let call = Object.values(data);
+                console.log(call);
+                setcalls(call);
             }
         })
     }, []);
-    if (incorporations.length > 0) {
+    if (calls.length > 0) {
         return (
             <ScrollView style={styles.inputsContainer}>
                {
-                    incorporations.map((comp, key)=>(
+                    calls.map((call, key)=>(
+
                             <ListItem
                                 key={key}
                                 bottomDivider
@@ -52,7 +53,7 @@ export default function Incorporations({ route, navigation }) {
                             >
                                 <ListItem.Content styles={{backgroundColor: "black"}}>
                                     <ListItem.Title style={{ color: 'black', fontWeight: 'bold'}}>
-                                        {comp.name}
+                                        {call.id}
                                     </ListItem.Title>
                                 </ListItem.Content>
                                 <ListItem.Chevron color="black" />
@@ -60,16 +61,6 @@ export default function Incorporations({ route, navigation }) {
                         )
                     )
                 }
-                <TouchableOpacity  
-                    style={{marginTop: 20}}
-                    onPress={()=>navigation.navigate('Add an Incorporation', { user: route.params.user })}  
-                >
-                    <Icon
-                        type="ionicon"
-                        size={50}
-                        name="add-circle-outline"     
-                    />
-                </TouchableOpacity>
             </ScrollView>
         );
     }
