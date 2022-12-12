@@ -8,8 +8,7 @@ import { getDatabase, push, ref, onValue, remove } from'firebase/database';
 
 
 export default function Companies({ route, navigation }) {
-    const [company, setCompany] = useState({key : 1, name : "Company 1"});
-    const[listCompanies, setListCompanies] = useState([company]);
+    const[listCompanies, setListCompanies] = useState([]);
 
     const firebaseConfig = {
         apiKey: "AIzaSyDDLq2Tr6jJEJUgnnQLJtYG6FxL3QjRQ6Q",
@@ -30,7 +29,6 @@ export default function Companies({ route, navigation }) {
         onValue(incorporationRef, (snapshot) => {const data = snapshot.val();
             if(data !== null){
                 let comp = Object.values(data);
-                console.log(comp);
                 setListCompanies(comp);
             }
         })
@@ -43,7 +41,7 @@ export default function Companies({ route, navigation }) {
                 <ListItem
                     key={key}
                     bottomDivider
-                    onPress={() => navigation.navigate('Company Detail', { user: route.params.user, inco: route.params.inco ,company: comp.name, staff : comp.staff, name: comp.name })}
+                    onPress={() => navigation.navigate('Company Detail', { user: route.params.user, incoStaff: route.params.incoStaff ,inco: route.params.inco ,company: comp.name, staff : comp.staff, name: comp.name })}
                 >
                     <ListItem.Content styles={{backgroundColor: "black"}}>
                         <ListItem.Title style={{ color: 'black', fontWeight: 'bold'}}>

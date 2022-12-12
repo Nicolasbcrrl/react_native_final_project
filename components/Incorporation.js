@@ -41,7 +41,7 @@ export default function Incorporations({ route, navigation }) {
                             <ListItem
                                 key={key}
                                 bottomDivider
-                                onPress={() => navigation.navigate('Companies', { user: route.params.user, inco: comp.name, name: comp.name + " companies" })}
+                                onPress={() => navigation.navigate('Companies', { user: route.params.user, incoStaff: incorporations[0].staff, inco: comp.name, name: comp.name + " companies" })}
                             >
                                 <ListItem.Content styles={{backgroundColor: "black"}}>
                                     <ListItem.Title style={{ color: 'black', fontWeight: 'bold'}}>

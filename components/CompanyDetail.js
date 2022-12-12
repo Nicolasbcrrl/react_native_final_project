@@ -40,7 +40,7 @@ export default function CompanyDetail({ route, navigation }) {
                     titleStyle={styles.titleStyle}
                     onPress={() => 
                         navigation.navigate(
-                            'Edit', {user: route.params.user, company: route.params.company, staff: route.params.staff}
+                            'Edit', {user: route.params.user, incoStaff: route.params.incoStaff ,inco: route.params.inco, company: route.params.company, staff: route.params.staff}
                         )
                     }
                 />
