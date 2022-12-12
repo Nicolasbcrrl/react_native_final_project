@@ -102,14 +102,23 @@ export default function AddIncorporation({ route, navigation }) {
     return (
       <View style={styles.container}>
         <View>
-            <Input  placeholder="Incorporation name" value= {incorporation.name} onChangeText={(text) => {setIncorporation({...incorporation, name: text})}}/>
+            <Input  
+              placeholder="Incorporation name" 
+              value= {incorporation.name} 
+              onChangeText={(text) => {setIncorporation({...incorporation, name: text})}}
+            />
         </View>
         <ScrollView style={styles.inputsContainer}>
           {
             incorporation.company.map((comp, key)=>(
               <View style={styles.inputContainer}>
                 <TextInput placeholder={"Enter Name"} value={comp.name}  onChangeText={(text)=>inputHandler(text,key)}/>
-                <TextInput keyboardType='numeric' type={Number} placeholder={"Enter Staff"} value={comp.staff}  onChangeText={(text)=>inputStaffHandler(text,key)}/>
+                <TextInput 
+                  keyboardType='numeric' 
+                  type={Number} placeholder={"Enter Staff"} 
+                  value={comp.staff}  
+                  onChangeText={(text)=>inputStaffHandler(text,key)}
+                />
                 <TouchableOpacity onPress = {()=> deleteHandler(key)}>
                   <Icon type="ionicon"
                         color="red"

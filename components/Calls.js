@@ -129,7 +129,6 @@ export default function Calls({ route, navigation }) {
               <Dialog.Actions>
                 <Button onPress={searchSection}>OK</Button>
                 <Button onPress={hideDialog}>Cancel</Button>
-                <Button onPress={()=> console.log(sectionSet)}>check</Button>
               </Dialog.Actions>
             </Dialog>
           </Portal>

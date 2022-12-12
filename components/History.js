@@ -27,7 +27,6 @@ export default function History({ route, navigation }) {
         onValue(callRef, (snapshot) => {const data = snapshot.val();
             if(data !== null){
                 let call = Object.values(data);
-                console.log(call);
                 setcalls(call);
             }
         })

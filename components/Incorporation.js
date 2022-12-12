@@ -27,7 +27,6 @@ export default function Incorporations({ route, navigation }) {
         onValue(incorporationRef, (snapshot) => {const data = snapshot.val();
             if(data !== null){
                 let incos = Object.values(data);
-                console.log(incos);
                 setIncorporations(incos);
             }
         })

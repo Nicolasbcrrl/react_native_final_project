@@ -59,7 +59,6 @@ export default function AddSection({ route, navigation }) {
 
     const addHandler = ()=>{
       const _inputs = [...sections];
-      console.log(_inputs);
       _inputs.push({key: '', name: '', staff: 0});
       setSections(_inputs);
     }
@@ -74,8 +73,6 @@ export default function AddSection({ route, navigation }) {
       _inputs[key].name = text;
       _inputs[key].key  = key;
       setSections(_inputs);
-      console.log(sections);
-  
     }
 
     const inputStaffHandler = (text, key)=>{
