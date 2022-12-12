@@ -11,7 +11,7 @@ The used technologies are:
 
 The application is not yet fully completed. However, basic functionality such as adding your incorporation, your company, your sections, making a call, as well as modifying the size of your sections is available. The rest of the functionality will be available soon. You can access it by downloading the Expo application to discover this new tool at the following link:
 
-                             https://expo.dev/@elbecce/my-final?serviceType=classic&distribution=expo-go
+https://expo.dev/@elbecce/my-final?serviceType=classic&distribution=expo-go
 
 You can also use the project on your own computer for your use.
 To install the project, you need to have NodeJS installed on your computer.
